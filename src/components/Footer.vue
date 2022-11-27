@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <div class="block">
+    <div class="smallBlock">
       <span class="title">покупателям</span>
       <div class="linkBlock">
         <a class="link" href="#">Каталог</a>
@@ -8,7 +8,7 @@
         <a class="link" href="#">Бренды</a>
       </div>
     </div>
-    <div class="block">
+    <div class="smallBlock">
       <span class="title">о нас</span>
       <div class="linkBlock">
         <a class="link" href="#">О компании</a>
@@ -18,7 +18,12 @@
     </div>
     <form class="block">
       <span class="title">Узнайте первыми о новинках и акциях</span>
-      <input class="mail" type="email" placeholder="Адрес электронной почты">
+      <div class="blockMail">
+        <input class="mail" type="email" placeholder="Адрес электронной почты" v-model="email">
+        <button v-if="email.length > 0" class="clear" @click="clearMail">
+          <img class="icon" src="@/assets/icons/Cross.svg" alt="">
+        </button>
+      </div>
       <button class="subscribe">Подписаться</button>
     </form>
   </div>
@@ -26,7 +31,17 @@
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  data() {
+    return{
+      email: ''
+    }
+  },
+  methods: {
+    clearMail() {
+      this.email = ''
+    }
+  }
 }
 </script>
 
@@ -36,13 +51,22 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  justify-content: space-around;
+  padding: 0 20px;
+  column-gap: 10px;
+  row-gap: 30px;
+  margin-bottom: 70px;
 }
 
 .block {
-  max-width: 335px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.smallBlock{
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -56,6 +80,7 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  max-width: 170px;
   gap: 7px;
 }
 
@@ -80,6 +105,30 @@ export default {
   letter-spacing: 0.04em;
   color: #333333;
   text-decoration: none;
+  min-width: 150px;
+  text-align: start;
+}
+
+.blockMail{
+  position: relative;
+  width: 100%;
+  height: 44px;
+}
+
+.clear{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 16px;
+  height: 16px;
+}
+
+.icon{
+  width: 16px;
+  height: 16px;
 }
 
 .mail{
@@ -114,5 +163,19 @@ export default {
   line-height: 20px;
   letter-spacing: 0.04em;
   color: #333333;
+}
+
+@media (max-width: 600px) {
+  .footer{
+    column-gap: 30px;
+  }
+  .block{
+    width: 100%;
+    align-items: flex-start;
+  }
+  .title{
+    max-width: 255px;
+  }
+
 }
 </style>
