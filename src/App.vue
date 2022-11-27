@@ -1,5 +1,6 @@
 <template>
   <Header />
+  <Product/>
   <Footer/>
 </template>
 
@@ -7,9 +8,11 @@
 import { Options, Vue } from 'vue-class-component'
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import Product from '@/components/Product.vue'
 
 @Options({
   components: {
+    Product,
     Footer,
     Header
   }
@@ -29,9 +32,5 @@ export default class App extends Vue {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  max-width: 1390px;
-  width: 100%;
-  height: 100vh;
-  margin: 0 auto;
 }
 </style>
